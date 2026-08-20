@@ -1,0 +1,72 @@
+{
+  "workflow": {
+    "id": "sample",
+    "name": "Sample workflow",
+    "objective": "Demonstrate graph lint"
+  },
+  "start_node": "N1",
+  "success_nodes": [
+    "N4"
+  ],
+  "nodes": [
+    {
+      "id": "N1",
+      "type": "context",
+      "important": true,
+      "completion_evidence": [
+        "facts.md"
+      ]
+    },
+    {
+      "id": "N2",
+      "type": "implementation",
+      "important": true,
+      "completion_evidence": [
+        "diff"
+      ],
+      "expected_inputs": 2
+    },
+    {
+      "id": "N3",
+      "type": "validation",
+      "important": true,
+      "completion_evidence": [
+        "test output"
+      ]
+    },
+    {
+      "id": "N4",
+      "type": "documentation",
+      "important": true,
+      "completion_evidence": [
+        "final report"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "N1",
+      "to": "N2",
+      "type": "sequential"
+    },
+    {
+      "from": "N2",
+      "to": "N3",
+      "type": "sequential"
+    },
+    {
+      "from": "N3",
+      "to": "N4",
+      "type": "conditional",
+      "routing_owner": "deterministic",
+      "condition": "tests pass"
+    },
+    {
+      "from": "N3",
+      "to": "N2",
+      "type": "loop",
+      "routing_owner": "deterministic",
+      "condition": "tests fail"
+    }
+  ]
+}
