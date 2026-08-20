@@ -1,32 +1,32 @@
-# GRAPH_OEE_FANUC_INTEGRATION — Example
+# GRAPH_OEE_FANUC_INTEGRATION — 예제
 
-## Objective
+## 목표 (Objective)
 
-Automatically ingest FANUC Robodrill production counter, alarms, runtime, and downtime data into an existing Supabase-backed OEE application without requiring operators to manually duplicate machine data.
+작업자가 설비 데이터를 수기로 옮겨 적지 않아도, FANUC Robodrill 설비의 생산 카운터·알람·가동시간·비가동시간 데이터를 기존 Supabase 기반 OEE 애플리케이션에 자동으로 수집·적재한다.
 
-## Selected mode
+## 선택한 방식 (Selected mode)
 
-Hierarchical Graph, because the work crosses machine connectivity, edge collection, database contract, application integration, validation, and production rollout.
+계층형 그래프(Hierarchical Graph). 이 작업은 설비 연결, 엣지(edge) 수집, 데이터베이스 계약, 애플리케이션 통합, 검증, 생산 라인 확산까지 여러 영역을 가로지르기 때문이다.
 
-## Graph
+## 그래프 (Graph)
 
 ```mermaid
 flowchart TD
-    A[Inspect current OEE app]
-    B[Verify FANUC controller connectivity/options]
-    C[Define machine data contract]
-    D1[Design edge collector]
-    D2[Design Supabase schema/API]
-    D3[Design OEE app mapping]
-    E[Build pilot for one machine]
-    F[Connectivity test]
-    G[Data integrity validation]
-    H{Evidence passes?}
-    I[Diagnose and repair]
-    J[Human pilot approval]
-    K[Scale rollout]
-    L[Monitoring]
-    M[Done]
+    A[현재 OEE 앱 점검]
+    B[FANUC 컨트롤러 연결/옵션 확인]
+    C[머신 데이터 계약 정의]
+    D1[엣지 수집기 설계]
+    D2[Supabase 스키마/API 설계]
+    D3[OEE 앱 매핑 설계]
+    E[1개 설비 파일럿 구축]
+    F[연결 테스트]
+    G[데이터 정합성 검증]
+    H{증거 통과?}
+    I[진단 및 수리]
+    J[사람 파일럿 승인]
+    K[전체 확산 배포]
+    L[모니터링]
+    M[완료]
 
     A --> B --> C
     C --> D1
@@ -36,14 +36,14 @@ flowchart TD
     D2 --> E
     D3 --> E
     E --> F --> G --> H
-    H -- No --> I --> E
-    H -- Yes --> J --> K --> L --> M
+    H -- 아니오 --> I --> E
+    H -- 예 --> J --> K --> L --> M
 ```
 
-## Key evidence
+## 핵심 증거 (Key evidence)
 
-- counter values match machine display over a defined sample window
-- alarm timestamps are preserved
-- runtime/downtime totals reconcile within accepted tolerance
-- reconnect does not duplicate records
-- current manual OEE workflow remains usable during pilot
+- 정해진 표본 구간 동안 카운터 값이 설비 화면 표시와 일치한다
+- 알람 타임스탬프가 보존된다
+- 가동/비가동 합계가 허용 오차 범위 내에서 대사(reconcile)된다
+- 재연결 시 레코드가 중복 생성되지 않는다
+- 파일럿 기간 동안 기존 수기 OEE 워크플로우가 계속 사용 가능하다
