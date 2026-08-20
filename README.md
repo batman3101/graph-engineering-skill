@@ -1,50 +1,50 @@
-﻿# graph-engineering-skill
+# graph-engineering-skill
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![skill](https://img.shields.io/badge/skill-v4.0.0-6b46c1.svg)](graph-engineering/SKILL.md)
-[![agents](https://img.shields.io/badge/Claude%20Code%20%7C%20Codex-supported-black.svg)](#?ㅼ튂)
+[![agents](https://img.shields.io/badge/Claude%20Code%20%7C%20Codex-supported-black.svg)](#설치)
 
-?먯뿰?대줈 留먰븳 ?섎룄瑜?**寃利앸맂 ?ㅽ뻾 洹몃옒??node 쨌 edge 쨌 state)** 濡?蹂?섑빐,
-Claude Code? Codex媛 洹몃?濡??ㅽ뻾?????덈뒗 ?뚰겕?뚮줈??怨꾩빟 臾몄꽌(`GRAPH_<TASK>.md`)瑜?留뚮뱾?댁＜???ㅼ튂??Skill.
+자연어로 말한 의도를 **검증된 실행 그래프(node · edge · state)** 로 변환해,
+Claude Code와 Codex가 그대로 실행할 수 있는 워크플로우 계약 문서(`GRAPH_<TASK>.md`)를 만들어주는 설치형 Skill.
 
-?꾨＼?꾪듃 ??以꾩씠 ?꾨땲??**?묒뾽??援ъ“ ?먯껜**瑜??ㅺ퀎?⑸땲?? 臾댁뾿??蹂묐젹濡??????덈뒗吏,
-臾댁뾿??寃利앺빐???섎뒗吏, ?대뵒???щ엺???뱀씤?댁빞 ?섎뒗吏瑜??ㅽ뻾 ?꾩뿉 ?뺤젙?⑸땲??
+프롬프트 한 줄이 아니라 **작업의 구조 자체**를 설계합니다. 무엇이 병렬로 돌 수 있는지,
+무엇을 검증해야 하는지, 어디서 사람이 승인해야 하는지를 실행 전에 확정합니다.
 
 ---
 
-## ???꾩슂?쒓?
+## 왜 필요한가
 
-?먯씠?꾪듃?먭쾶 湲??묒뾽???쒗궎硫???媛吏 ?쇱쓣 ?숈떆???⑸땲????**怨쇱젣瑜??몃뒗 ??*怨?**?묒뾽??援ъ“瑜?留ㅻ쾲 ?ㅼ떆 諛쒓껄?섎뒗 ??*.
-?꾩옄瑜?臾몄꽌濡?怨좎젙?섎㈃ ?ㅽ뻾??鍮⑤씪吏怨? 愿李?媛?ν빐吏怨? ?ㅽ뙣媛 寃⑸━?⑸땲??
+에이전트에게 긴 작업을 시키면 두 가지 일을 동시에 합니다 — **과제를 푸는 일**과 **작업의 구조를 매번 다시 발견하는 일**.
+후자를 문서로 고정하면 실행이 빨라지고, 관찰 가능해지고, 실패가 격리됩니다.
 
-| ?좏삎 猷⑦봽??臾몄젣 | 洹몃옒?꾩쓽 ?대쾿 |
+| 선형 루프의 문제 | 그래프의 해법 |
 |---|---|
-| ?낅┰ ?묒뾽源뚯? 以꾩쓣 ?쒖꽌 ?湲?| ?섏〈 ?녿뒗 ?몃뱶??蹂묐젹 ?ㅽ뻾 |
-| 以묎컙 ?섎굹媛 二쎌쑝硫??꾨? 以묐떒 | ?ㅽ뙣??媛吏留??ъ떎?? 泥댄겕?ъ씤???ш컻 |
-| "寃곌낵 ?섏걯硫??ъ떆??瑜??쒗쁽 紐???| 議곌굔遺 ?ｌ? + ?ъ떆???곹븳??洹몃옒?꾩뿉 ?댁옣 |
-| ?꾨즺 二쇱옣??寃利앸릺吏 ?딆쓬 | ?꾨즺 利앷굅(evidence)? 寃利?寃뚯씠??媛뺤젣 |
+| 독립 작업까지 줄을 서서 대기 | 의존 없는 노드는 병렬 실행 |
+| 중간 하나가 죽으면 전부 중단 | 실패한 가지만 재실행, 체크포인트 재개 |
+| "결과 나쁘면 재시도"를 표현 못 함 | 조건부 엣지 + 재시도 상한을 그래프에 내장 |
+| 완료 주장이 검증되지 않음 | 완료 증거(evidence)와 검증 게이트 강제 |
 
-> 洹몃옒?꾨뒗 紐⑤뜽???묐삊?섍쾶 留뚮뱾吏 ?딆뒿?덈떎. **?뚰겕?뚮줈?곕? ?쇰룞?섍린 ?대졄寃?* 留뚮벊?덈떎.
+> 그래프는 모델을 똑똑하게 만들지 않습니다. **워크플로우를 혼동하기 어렵게** 만듭니다.
 
 ---
 
-## ?ㅼ튂
+## 설치
 
-### Windows (cmd) ???꾩뿭 ?ㅼ튂
+### Windows (cmd) — 전역 설치
 
 ```cmd
 curl -fsSL https://raw.githubusercontent.com/batman3101/graph-engineering-skill/main/install.cmd -o "%TEMP%\ge-install.cmd" && "%TEMP%\ge-install.cmd"
 ```
 
-### macOS / Linux / WSL ???꾩뿭 ?ㅼ튂
+### macOS / Linux / WSL — 전역 설치
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/batman3101/graph-engineering-skill/main/install.sh | bash
 ```
 
-### ?꾨줈?앺듃 ?꾩슜 ?ㅼ튂
+### 프로젝트 전용 설치
 
-?꾩옱 ?대뜑?먮쭔 ?ㅼ튂?섎젮硫?`-p` ?듭뀡??遺숈엯?덈떎. (??먭낵 Git?쇰줈 怨듭쑀?????좎슜)
+현재 폴더에만 설치하려면 `-p` 옵션을 붙입니다. (팀원과 Git으로 공유할 때 유용)
 
 ```cmd
 :: Windows
@@ -56,154 +56,159 @@ curl -fsSL https://raw.githubusercontent.com/batman3101/graph-engineering-skill/
 curl -fsSL https://raw.githubusercontent.com/batman3101/graph-engineering-skill/main/install.sh | bash -s -- -p
 ```
 
-### ?ㅼ튂湲곌? ?섎뒗 ??
-1. GitHub?먯꽌 理쒖떊 ?ㅽ궗???대젮諛쏆뒿?덈떎.
-2. `claude` / `codex` 紐낅졊??PATH?먯꽌 ?먮룞 媛먯??⑸땲??
-3. 媛먯????꾧뎄???ㅽ궗 ?대뜑???뚯븘???ㅼ튂?⑸땲??
-   - Claude Code ??`~/.claude/skills/graph-engineering/`
-   - Codex ??`~/.agents/skills/graph-engineering/`
-4. ????媛먯??섏? ?딆쑝硫???寃쎈줈 紐⑤몢???ㅼ튂?⑸땲?? ?섏쨷???대뒓 履쎌쓣 源붿븘??諛붾줈 ?몄떇?⑸땲??
-5. ?ъ떎?됲븯硫?湲곗〈 ?ㅼ튂瑜???뼱?곕ŉ 理쒖떊 踰꾩쟾?쇰줈 媛깆떊?⑸땲??
+### 설치기가 하는 일
 
-### ?섎룞 ?ㅼ튂
+1. GitHub에서 최신 스킬을 내려받습니다.
+2. `claude` / `codex` 명령을 PATH에서 자동 감지합니다.
+3. 감지된 도구의 스킬 폴더에 알아서 설치합니다.
+   - Claude Code → `~/.claude/skills/graph-engineering/`
+   - Codex → `~/.agents/skills/graph-engineering/`
+4. 둘 다 감지되지 않으면 두 경로 모두에 설치합니다. 나중에 어느 쪽을 깔아도 바로 인식됩니다.
+5. 재실행하면 기존 설치를 덮어쓰며 최신 버전으로 갱신됩니다.
 
-`graph-engineering/` ?대뜑瑜??듭㎏濡??꾨옒 寃쎈줈??蹂듭궗?섎㈃ ?⑸땲??
+### 수동 설치
 
-| ?꾧뎄 | macOS / Linux | Windows |
+`graph-engineering/` 폴더를 통째로 아래 경로에 복사하면 됩니다.
+
+| 도구 | macOS / Linux | Windows |
 |---|---|---|
 | Claude Code | `~/.claude/skills/graph-engineering/` | `%USERPROFILE%\.claude\skills\graph-engineering\` |
 | Codex | `~/.agents/skills/graph-engineering/` | `%USERPROFILE%\.agents\skills\graph-engineering\` |
 
 ---
 
-## ?ъ슜踰?
+## 사용법
+
 ### Claude Code
 
 ```text
 /graph-engineering
-?꾩옱 濡쒓렇??湲곕뒫??由ы뙥?곕쭅?섎젮怨??쒕떎.
-癒쇱? ?ㅽ뻾 洹몃옒?꾨? 留뚮뱾怨?graph lint瑜??듦낵?쒗궓 ??
-?낅┰?곸씤 ?묒뾽? subagent濡?遺꾨━?섍퀬 媛??④퀎??completion evidence瑜??④꺼??
+현재 로그인 기능을 리팩터링하려고 한다.
+먼저 실행 그래프를 만들고 graph lint를 통과시킨 뒤,
+독립적인 작업은 subagent로 분리하고 각 단계의 completion evidence를 남겨라.
 ```
 
 ### Codex
 
 ```text
-graph-engineering ?ㅽ궗???ъ슜?댁꽌
-???붿껌??GRAPH_AUTH.md ?ㅽ뻾 怨꾩빟?쇰줈 癒쇱? 留뚮뱾?댁쨾.
-lint瑜??듦낵????node ?쒖꽌?濡?援ы쁽?섍퀬,
-validation / recovery / approval ?ｌ???嫄대꼫?곗? 留?
+graph-engineering 스킬을 사용해서
+이 요청을 GRAPH_AUTH.md 실행 계약으로 먼저 만들어줘.
+lint를 통과한 뒤 node 순서대로 구현하고,
+validation / recovery / approval 엣지는 건너뛰지 마.
 ```
 
-### 沅뚯옣 2?④퀎 ?ъ슜 (媛???덉쟾)
+### 권장 2단계 사용 (가장 안전)
 
-**1?④퀎 ???ㅺ퀎留?*
+**1단계 — 설계만**
 
 ```text
-graph-engineering???ъ슜?????붽뎄?ы빆??遺꾩꽍??
-?꾩쭅 肄붾뱶???섏젙?섏? 留먭퀬 GRAPH_<TASK>.md留?留뚮뱾??
+graph-engineering을 사용해 이 요구사항을 분석해.
+아직 코드는 수정하지 말고 GRAPH_<TASK>.md만 만들어.
 Complexity Gate, node contracts, validation, recovery,
-parallel plan, Graph Lint源뚯? ?ы븿??
+parallel plan, Graph Lint까지 포함해.
 ```
 
-**2?④퀎 ???щ엺??洹몃옒?꾨? 寃?좏븳 ???ㅽ뻾**
+**2단계 — 사람이 그래프를 검토한 뒤 실행**
 
 ```text
-GRAPH_<TASK>.md瑜??ㅽ뻾 怨꾩빟?쇰줈 ?ъ슜??援ы쁽???쒖옉??
-dependency-ready node留??ㅽ뻾?섍퀬, 媛?node ?꾨즺 ??evidence瑜??④꺼.
-洹몃옒?꾩뿉 ?녿뒗 怨좎쐞???묒뾽? ?ㅽ뻾?섏? 留?
+GRAPH_<TASK>.md를 실행 계약으로 사용해 구현을 시작해.
+dependency-ready node만 실행하고, 각 node 완료 후 evidence를 남겨.
+그래프에 없는 고위험 작업은 실행하지 마.
 ```
 
 ---
 
-## ?듭떖 ?ㅺ퀎 洹쒖튃
+## 핵심 설계 규칙
 
-?ㅽ궗??洹몃옒?꾨? 留뚮뱾 ??媛뺤젣?섎뒗 洹쒖튃 以??쇰??낅땲?? ?꾩껜??[`GRAPH_RULES.md`](graph-engineering/references/GRAPH_RULES.md) 李몄“.
+스킬이 그래프를 만들 때 강제하는 규칙 중 일부입니다. 전체는 [`GRAPH_RULES.md`](graph-engineering/references/GRAPH_RULES.md) 참조.
 
-- **Fake Edge ?쒓굅** ??癒쇱? ?묒꽦?덈떎???댁쑀留뚯쑝濡??붿궡?쒕? 洹몃━吏 ?딆뒿?덈떎. ?ｌ????ㅼ쓬 ?몃뱶媛 ?댁쟾 ?몃뱶??*異쒕젰???뚮퉬*?섍굅?? *?먯젙???섏〈*?섍굅?? *沅뚰븳???곸냽*???뚮쭔 吏꾩쭨?낅땲??
-- **Complexity Gate** ??7媛?異뺤쓣 0???먯쑝濡?梨꾩젏???⑥씪 猷⑦봽 / ?좏삎 / 洹몃옒??/ 怨꾩링 洹몃옒?꾨? 寃곗젙?⑸땲?? ?쒖감 ?섏〈留??덈뒗 ?묒뾽??洹몃옒?꾨? 媛뺤젣?섏? ?딆뒿?덈떎.
-- **Fresh-Context Verifier** ???묒뾽?먯? 寃利앹옄???덈? 而⑦뀓?ㅽ듃瑜?怨듭쑀?섏? ?딆뒿?덈떎. 怨듭쑀?섎㈃ 媛숈? 猷⑦봽媛 ?먭린 ?숈젣瑜?梨꾩젏?섎뒗 寃껉낵 媛숈뒿?덈떎.
-- **Anchors** ??紐⑤뱺 ?몃뱶媛 ?쒕줈??*蹂닿퀬??留?寃?ы븯硫??꾨? ?쇨??섏?留??꾨Т寃껊룄 寃利앸릺吏 ?딆뒿?덈떎. ?ㅼ젣濡??ㅽ뻾???뚯뒪?? ?ㅼ륫 ?곗씠?? ?숆껐 洹쒖튃 媛숈? 諛섎컯 遺덇??ν븳 ?좏샇媛 理쒖냼 1媛??꾩슂?⑸땲??
-- **Fan-in Guard** ??醫낇빀 ?몃뱶??`諛쏆? ?낅젰 ??== 湲곕? ??瑜?寃?ы빀?덈떎. 遺遺??곗씠?곕줈 "?꾨즺??蹂닿퀬??瑜?留뚮뱾吏 ?딆뒿?덈떎.
-- **Routing Owner** ??紐⑤뱺 遺꾧린 ?ｌ????먮떒 二쇱껜瑜?紐낆떆?⑸땲?? `deterministic` / `model` / `human` / `external`. 洹쒖튃?쇰줈 寃곗젙 媛?ν븯硫?deterministic???곗꽑?⑸땲??
-- **Human Gate** ??諛고룷, 留덉씠洹몃젅?댁뀡, ??젣 ???섎룎由????녿뒗 ?묒뾽 ?욎뿉??諛섎뱶???щ엺 ?뱀씤 ?몃뱶瑜??〓땲??
+- **Fake Edge 제거** — 먼저 작성했다는 이유만으로 화살표를 그리지 않습니다. 엣지는 다음 노드가 이전 노드의 *출력을 소비*하거나, *판정에 의존*하거나, *권한을 상속*할 때만 진짜입니다.
+- **Complexity Gate** — 7개 축을 0–2점으로 채점해 단일 루프 / 선형 / 그래프 / 계층 그래프를 결정합니다. 순차 의존만 있는 작업에 그래프를 강제하지 않습니다.
+- **Fresh-Context Verifier** — 작업자와 검증자는 절대 컨텍스트를 공유하지 않습니다. 공유하면 같은 루프가 자기 숙제를 채점하는 것과 같습니다.
+- **Anchors** — 모든 노드가 서로의 *보고서*만 검사하면 전부 일관되지만 아무것도 검증되지 않습니다. 실제로 실행된 테스트, 실측 데이터, 동결 규칙 같은 반박 불가능한 신호가 최소 1개 필요합니다.
+- **Fan-in Guard** — 종합 노드는 `받은 입력 수 == 기대 수`를 검사합니다. 부분 데이터로 "완료된 보고서"를 만들지 않습니다.
+- **Routing Owner** — 모든 분기 엣지는 판단 주체를 명시합니다: `deterministic` / `model` / `human` / `external`. 규칙으로 결정 가능하면 deterministic을 우선합니다.
+- **Human Gate** — 배포, 마이그레이션, 삭제 등 되돌릴 수 없는 작업 앞에는 반드시 사람 승인 노드를 둡니다.
 
 ---
 
 ## Graph Lint
 
-?ㅽ궗??JSON DAG瑜??④퍡 ?앹꽦?섎㈃ ?뺤쟻 寃?щ? ?뚮┫ ???덉뒿?덈떎.
+스킬이 JSON DAG를 함께 생성하면 정적 검사를 돌릴 수 있습니다.
 
 ```bash
 python graph-engineering/scripts/graph_lint.py graph-engineering/examples/SAMPLE_GRAPH.json
 ```
 
-寃????ぉ:
+검사 항목:
 
-| ?ш컖??| 寃??|
+| 심각도 | 검사 |
 |---|---|
-| ERROR | 議댁옱?섏? ?딅뒗 node 李몄“ / 以묐났 id |
+| ERROR | 존재하지 않는 node 참조 / 중복 id |
 | ERROR | unreachable node |
-| ERROR | 遺꾧린 ?ｌ???`routing_owner` ?꾨씫 |
-| ERROR | loop ?ｌ???醫낅즺 議곌굔 ?꾨씫 |
-| WARNING | terminal node ?놁쓬 (?ъ씠?대쭔 議댁옱) |
-| WARNING | high-risk node??蹂댁긽쨌?뱀씤 ?꾨씫 |
-| WARNING | 以묒슂 node??completion evidence ?꾨씫 |
-| WARNING | fan-out??`max_parallel` / `fanin_reducer` ?꾨씫 |
-| WARNING | join node??`expected_inputs` 媛???꾨씫 |
+| ERROR | 분기 엣지의 `routing_owner` 누락 |
+| ERROR | loop 엣지의 종료 조건 누락 |
+| WARNING | terminal node 없음 (사이클만 존재) |
+| WARNING | high-risk node의 보상·승인 누락 |
+| WARNING | 중요 node의 completion evidence 누락 |
+| WARNING | fan-out의 `max_parallel` / `fanin_reducer` 누락 |
+| WARNING | join node의 `expected_inputs` 가드 누락 |
 
 ---
 
-## 援ъ꽦
+## 구성
 
 ```text
 graph-engineering/
-?쒋? SKILL.md                         # ?ㅽ궗 吏꾩엯??(?몃━嫄?쨌 16?④퀎 ?뚰겕?뚮줈??쨌 ?듭떖 洹쒖튃)
-?쒋? references/
-?? ?쒋? GRAPH_RULES.md                # ?ㅺ퀎 洹쒖튃 20議??? ?쒋? PATTERNS.md                   # ?⑦꽩 移댄깉濡쒓렇 + Mermaid + ?덊떚?⑦꽩
-?? ?쒋? ADVANCED.md                   # fresh-context 寃利?쨌 ?듭빱 쨌 fan-in ?몃옪 쨌 紐⑤뜽 ?곗뼱留??? ?쒋? GRAPH_SCHEMA.md               # node / edge / state YAML쨌JSON 怨꾩빟
-?? ?쒋? CODEX_ADAPTER.md              # Codex ?ㅽ뻾 洹쒖빟
-?? ?붴? CLAUDE_CODE_ADAPTER.md        # Claude Code ?ㅽ뻾 洹쒖빟 (subagent 쨌 hook)
-?쒋? templates/
-?? ?쒋? GRAPH_WORKFLOW_TEMPLATE.md    # ?뺤떇 ?ㅽ뻾 怨꾩빟 臾몄꽌 (18媛??뱀뀡)
-?? ?붴? GRAPH_SPEC_QUICK.md           # ?뚰삎 洹몃옒?꾩슜 遺숈뿬?ｊ린 異뺤빟 ?ㅽ럺 5醫??쒋? examples/
-?? ?쒋? OEE_FANUC_EXAMPLE.md          # ?쒖“ ?ㅻ퉬 ?곗씠???곕룞 ?ㅼ쟾 ?덉젣
-?? ?붴? SAMPLE_GRAPH.json             # lint ?듦낵 ?섑뵆 DAG
-?붴? scripts/
-   ?붴? graph_lint.py                 # ?뺤쟻 洹몃옒??寃?ш린
+├─ SKILL.md                         # 스킬 진입점 (트리거 · 16단계 워크플로우 · 핵심 규칙)
+├─ references/
+│  ├─ GRAPH_RULES.md                # 설계 규칙 20조
+│  ├─ PATTERNS.md                   # 패턴 카탈로그 + Mermaid + 안티패턴
+│  ├─ ADVANCED.md                   # fresh-context 검증 · 앵커 · fan-in 트랩 · 모델 티어링
+│  ├─ GRAPH_SCHEMA.md               # node / edge / state YAML·JSON 계약
+│  ├─ CODEX_ADAPTER.md              # Codex 실행 규약
+│  └─ CLAUDE_CODE_ADAPTER.md        # Claude Code 실행 규약 (subagent · hook)
+├─ templates/
+│  ├─ GRAPH_WORKFLOW_TEMPLATE.md    # 정식 실행 계약 문서 (18개 섹션)
+│  └─ GRAPH_SPEC_QUICK.md           # 소형 그래프용 붙여넣기 축약 스펙 5종
+├─ examples/
+│  ├─ OEE_FANUC_EXAMPLE.md          # 제조 설비 데이터 연동 실전 예제
+│  └─ SAMPLE_GRAPH.json             # lint 통과 샘플 DAG
+└─ scripts/
+   └─ graph_lint.py                 # 정적 그래프 검사기
 ```
 
 ---
 
-## ?⑦꽩 移댄깉濡쒓렇
+## 패턴 카탈로그
 
-| ?⑦꽩 | ?몄젣 ?곕굹 |
+| 패턴 | 언제 쓰나 |
 |---|---|
-| **Pipeline** | 異쒕젰?믪엯???섏〈???ㅼ젣濡?議댁옱?섎뒗 援ш컙 |
-| **Fan-out / Fan-in** | ?낅┰ ?묒뾽??蹂묐젹濡?肉뚮━怨?醫낇빀 ?몃뱶?먯꽌 痍⑦빀 |
-| **Diamond** | 遺꾧린 ??蹂묐젹 ??寃利????ъ닔?? ?ㅼ쟾?먯꽌 媛???뷀븳 ?뺥깭 |
-| **Verifier Node** | ?앹꽦?먯? 遺꾨━??寃利? pass/fail 議곌굔遺 ?ｌ? + ?ъ떆???곹븳 |
-| **Human Approval Gate** | ?뚭눼?겶룸??몄쟻 ?묒뾽 吏곸쟾 |
-| **Dynamic Discovery** | 洹쒕え瑜?誘몃━ 紐⑤Ⅴ???묒뾽. ?곗냽 2?쇱슫???좉퇋 諛쒓껄 0?대㈃ 醫낅즺 |
+| **Pipeline** | 출력→입력 의존이 실제로 존재하는 구간 |
+| **Fan-out / Fan-in** | 독립 작업을 병렬로 뿌리고 종합 노드에서 취합 |
+| **Diamond** | 분기 → 병렬 → 검증 → 재수렴. 실전에서 가장 흔한 형태 |
+| **Verifier Node** | 생성자와 분리된 검증. pass/fail 조건부 엣지 + 재시도 상한 |
+| **Human Approval Gate** | 파괴적·대외적 작업 직전 |
+| **Dynamic Discovery** | 규모를 미리 모르는 작업. 연속 2라운드 신규 발견 0이면 종료 |
 
-?먯꽭??Mermaid ?덉떆??[`PATTERNS.md`](graph-engineering/references/PATTERNS.md) 李몄“.
-
----
-
-## ?몄젣 ?곗? 留먯븘???섎굹
-
-洹몃옒?꾨뒗 **??breadth)** ???щ뒗 ?꾧뎄?댁? **?먮떒??*???щ뒗 ?꾧뎄媛 ?꾨떃?덈떎.
-?꾨옒???대떦?섎㈃ 洹몃깷 猷⑦봽媛 ?뺣떟?낅땲??
-
-- ???⑥닔 異붽?, 踰꾧렇 ?섎굹 ?섏젙泥섎읆 ?묎퀬 怨좊┰???묒뾽
-- 紐⑤뱺 ?④퀎媛 吏꾩쭨濡??쒖감 ?섏〈?곸씤 寃쎌슦
-- 臾댁뾿??李얜뒗吏 ?꾩쭅 紐⑤Ⅴ???먯깋 ?④퀎
-- 留??④퀎瑜?吏곸젒 ?뱀씤?섍퀬 ?띠? 寃쎌슦
-
-Fake Edge ?뚯뒪?몃줈 ?먮퀎?섏꽭?? **?ｌ? ?녿뒗 ???묒뾽???섎굹??紐?李얘쿋?ㅻ㈃, 留뚮뱾 洹몃옒?꾧? ?녿뒗 寃껋엯?덈떎.**
+자세한 Mermaid 예시는 [`PATTERNS.md`](graph-engineering/references/PATTERNS.md) 참조.
 
 ---
 
-## 湲곗뿬 쨌 ?쇱씠?좎뒪
+## 언제 쓰지 말아야 하나
 
-?댁뒋? PR ?섏쁺?⑸땲?? ?쇱씠?좎뒪??[MIT](LICENSE).
+그래프는 **폭(breadth)** 을 사는 도구이지 **판단력**을 사는 도구가 아닙니다.
+아래에 해당하면 그냥 루프가 정답입니다.
+
+- 한 함수 추가, 버그 하나 수정처럼 작고 고립된 작업
+- 모든 단계가 진짜로 순차 의존적인 경우
+- 무엇을 찾는지 아직 모르는 탐색 단계
+- 매 단계를 직접 승인하고 싶은 경우
+
+Fake Edge 테스트로 판별하세요. **엣지 없는 두 작업을 하나도 못 찾겠다면, 만들 그래프가 없는 것입니다.**
+
+---
+
+## 기여 · 라이선스
+
+이슈와 PR 환영합니다. 라이선스는 [MIT](LICENSE).

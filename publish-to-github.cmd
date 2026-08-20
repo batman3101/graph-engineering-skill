@@ -44,16 +44,21 @@ echo [INFO] Repo to create: %GH_USER%/%REPO_NAME% (public)
 echo.
 
 rem --- replace the placeholder username in installers and README ---
+rem NOTE: Get-Content/Set-Content must be forced to UTF-8. Windows PowerShell 5.1
+rem defaults to the ANSI codepage (e.g. CP949 on Korean Windows), which corrupts
+rem non-ASCII text. We use .NET UTF8 APIs so this is safe on every locale.
 echo [INFO] Rewriting placeholders...
 powershell -NoProfile -Command ^
   "$u='%GH_USER%';" ^
+  "$enc = New-Object System.Text.UTF8Encoding($false);" ^
   "foreach ($f in @('install.cmd','install.sh','README.md')) {" ^
   "  if (Test-Path $f) {" ^
-  "    $c = Get-Content $f -Raw;" ^
+  "    $p = (Resolve-Path $f).Path;" ^
+  "    $c = [System.IO.File]::ReadAllText($p, $enc);" ^
   "    $c = $c -replace 'YOUR_GITHUB_USERNAME', $u;" ^
   "    $c = $c -replace 'https://raw\.githubusercontent\.com/USER/', ('https://raw.githubusercontent.com/' + $u + '/');" ^
   "    $c = $c -replace 'https://github\.com/USER/', ('https://github.com/' + $u + '/');" ^
-  "    Set-Content -NoNewline -Encoding UTF8 $f $c;" ^
+  "    [System.IO.File]::WriteAllText($p, $c, $enc);" ^
   "  }" ^
   "}"
 

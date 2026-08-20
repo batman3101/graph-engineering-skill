@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # graph-engineering skill installer (macOS / Linux / WSL)
 # Usage:
 #   curl -fsSL https://raw.githubusercontent.com/<user>/<repo>/main/install.sh | bash
